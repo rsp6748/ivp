@@ -1,0 +1,22 @@
+image = imread('r.jpg'); 
+gray_image = rgb2gray(image);
+f_transform = fft2(gray_image);
+subplot(2, 2, 1);
+imshow(gray_image);
+title('Original Image');
+% Display the Fourier spectrum
+f_spectrum = abs(f_transform);
+f_spectrum = log(f_spectrum + 1); % Add 1 to avoid log(0)
+subplot(2, 2, 2);
+imshow(f_spectrum, []);
+title('Fourier Spectrum');
+% Compute the inverse Fourier transform
+reconstructed_image = ifft2(f_transform);
+% Display the reconstructed image
+subplot(2, 2, 3);
+imshow(abs(reconstructed_image), []);
+title('Reconstructed Image');
+axis off;
+% Adjust subplot sizes
+subplot(2, 2, 4);
+axis off;
